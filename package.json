@@ -1,0 +1,11 @@
+{
+  "name": "sav-activity-bot",
+  "version": "1.0.0",
+  "description": "this bot send info about online in the game Savage",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "marss-hub",
+  "license": "MIT"
+}
