@@ -1,4 +1,5 @@
 import TelegramBot from "node-telegram-bot-api";
+import { CONFIGDATA } from "./configData.mjs";
 
 /**
  * модуль создает и экспортирует экземпляр бота

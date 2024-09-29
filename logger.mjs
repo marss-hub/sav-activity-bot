@@ -1,3 +1,4 @@
+import { CONFIGDATA } from "./configData.mjs";
 import { LogManager } from "./logManager.mjs";
 
 /**
