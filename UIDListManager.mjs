@@ -26,6 +26,8 @@ export class UIDListManager {
     const data = fs.readFileSync(this.#UIDListPath);     
         if (data.length !== 0) {
           result = JSON.parse(data);
+        } else {
+          logger.addLogEntry(`ERROR: received empty userId list`)
         }
         return result;
   }
