@@ -5,7 +5,8 @@ import { logger } from "./logger.mjs";
 /**
  * INITIALIZATION LOOP
  */
-
+export let onlinePlayers = null;
+export let map = null;
 let lastMsgTime = 0;
 
 setInterval(async () => {
@@ -17,7 +18,8 @@ if (response.status === 200) {
     const data = JSON.parse(responseText);
     
     const pubEuServerData = data.find((item) => item.data.ip === CONFIGDATA.tracked_sever_ip);
-    const onlinePlayers = Number(pubEuServerData.data.cnum);
+    onlinePlayers = Number(pubEuServerData.data.cnum);
+    map = String(pubEuServerData.data.world);
     const currentTime = Date.now();
 
     if (/*onlinePlayers > CONFIGDATA.tracked_quantity_players && */currentTime - lastMsgTime > CONFIGDATA.message_interval_ms )  {
