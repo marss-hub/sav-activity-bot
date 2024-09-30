@@ -2,7 +2,6 @@ import { CONFIGDATA } from "./configData.mjs";
 import { bot } from "./bot.mjs";
 import { logger } from "./logger.mjs";
 
-
 /**
  * INITIALIZATION LOOP
  */
@@ -28,7 +27,7 @@ if (response.status === 200) {
     }
     
 } else {
-    logger.addLogEntry(`esponse status: ${response.status} - Неверный статус ответа`)
+    logger.addLogEntry(`response status: ${response.status} - Неверный статус ответа`)
     console.log(`${response.status} - Неверный статус ответа`)
 }
 
@@ -37,6 +36,7 @@ if (response.status === 200) {
   await bot.startPolling()
 
 
-// отправляет инфо ВСЕМ контактам
+// отправляет инфо ВСЕМ контактам (сделать отправщик и его запустить)
 // работает на постоянном хостинге
+// подсказывает текущую карту
 // перезапускается при падении node

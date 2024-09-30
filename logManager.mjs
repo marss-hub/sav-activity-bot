@@ -11,7 +11,7 @@ export class LogManager {
   constructor(logPathStr) {
     this.#logPath = logPathStr;
     if (!fs.existsSync(this.#logPath)) {
-      fs.openSync(this.#logPath, { flag: "w+" });
+      fs.closeSync(fs.openSync(this.#logPath, 'w+'));
     }
   }
 
@@ -19,6 +19,6 @@ export class LogManager {
    * Делает лог-запись 
    */
   addLogEntry(msg) {
-    fs.appendFileSync(this.#logPath, `${String(new Date())} \n${msg} \n\n`, { flag: "a" });
+    fs.appendFileSync(this.#logPath, `${String(new Date())} \n${msg} \n\n`);
   }
 }
