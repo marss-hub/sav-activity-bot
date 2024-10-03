@@ -43,8 +43,9 @@ export class UIDListManager {
         const data = fs.readFileSync(this.#UIDListPath);     
         if (data.length !== 0) {
           const dataArr = JSON.parse(data);
-          dataArr.push(userId);
-          fs.writeFileSync(this.#UIDListPath, JSON.stringify(dataArr));
+          const dataSet = new Set(dataArr);
+          dataSet.add(userId);
+          fs.writeFileSync(this.#UIDListPath, JSON.stringify(Array.from(dataSet)));
         } else {
           fs.writeFileSync(this.#UIDListPath, JSON.stringify([userId]));
         }
@@ -52,6 +53,4 @@ export class UIDListManager {
         logger.addLogEntry(`Ошибка добавления пользователя: Некорректный JSON или ID \n${err}`)
       }
   }
-
-
 }

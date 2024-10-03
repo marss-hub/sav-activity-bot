@@ -1,6 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 import { CONFIGDATA } from "./configData.mjs";
 import { map, onlinePlayers } from "./index.mjs";
+import { UIDList } from "./UIDList.mjs";
 
 /**
  * модуль создает и экспортирует экземпляр бота
@@ -10,7 +11,20 @@ export const bot = new TelegramBot(CONFIGDATA.api_key_bot, {
 });
 
 bot.on("text", async (msg) => {
-  if (String(msg.text).trim() === "/menu") {
+if (String(msg.text).trim() === "/start") {
+  UIDList.addUID(msg.chat.id);
+
+  await bot.sendMessage(
+    msg.chat.id,
+    `Hi, i am a small bot for online checking on Coronavirus Public EU server for Savage Drx game. You can get information by clicking on the buttons:
+
+    /online - online players 
+    /map - map on the server
+    /menu - open the menu
+    
+    So that you don't miss the most interesting matches, i will send you messages when will there be more than 20 players online (once every 15 minutes while there are more than 20 players)`
+  );
+ } else if (String(msg.text).trim() === "/menu") {
     await bot.sendMessage(msg.chat.id, "Menu on", {
       reply_markup: {
         keyboard: [["/online", "/map", "/info"]],
@@ -24,7 +38,7 @@ bot.on("text", async (msg) => {
   } else {
     await bot.sendMessage(
       msg.chat.id,
-      `Hi, i am a lil bot for checking the online on server Coronavirus Public. You can get information by clicking on the buttons:
+      `Hi, i am a small bot for online checking on Coronavirus Public EU server for Savage Drx game. You can get information by clicking on the buttons:
 
       /online - online players 
       /map - map on the server
