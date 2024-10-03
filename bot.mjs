@@ -22,7 +22,7 @@ if (String(msg.text).trim() === "/start") {
     /map - map on the server
     /menu - open the menu
     
-    So that you don't miss the most interesting matches, i will send you messages when will there be more than 20 players online (once every 15 minutes while there are more than 20 players)`
+    So that you don't miss the most interesting matches, i will send you messages when will there be more than ${CONFIGDATA.tracked_quantity_players} players online (once every ${(CONFIGDATA.message_interval_ms / 1000) / 60} minutes while there are more than ${CONFIGDATA.tracked_quantity_players} players)`
   );
  } else if (String(msg.text).trim() === "/menu") {
     await bot.sendMessage(msg.chat.id, "Menu on", {
@@ -44,7 +44,7 @@ if (String(msg.text).trim() === "/start") {
       /map - map on the server
       /menu - open the menu
       
-      So that you don't miss the most interesting matches, i will send you messages when will there be more than 20 players online (once every 15 minutes while there are more than 20 players)`
+      So that you don't miss the most interesting matches, i will send you messages when will there be more than ${CONFIGDATA.tracked_quantity_players} players online (once every ${(CONFIGDATA.message_interval_ms / 1000) / 60} minutes while there are more than ${CONFIGDATA.tracked_quantity_players} players)`
     );
   }
 });
