@@ -11,23 +11,23 @@ export const bot = new TelegramBot(CONFIGDATA.api_key_bot, {
 });
 
 bot.on("text", async (msg) => {
-if (String(msg.text).trim() === "/start") {
+
+if (!UIDList.checkUIDInList(msg.chat.id)) {
   UIDList.addUID(msg.chat.id);
+};
+
+if (String(msg.text).trim() === "/stop") {
+  UIDList.deleteUID(msg.chat.id);
 
   await bot.sendMessage(
     msg.chat.id,
-    `Hi, i am a small bot for online checking on Coronavirus Public EU server for Savage Drx game. You can get information by clicking on the buttons:
-
-    /online - online players 
-    /map - map on the server
-    /menu - open the menu
-    
-    So that you don't miss the most interesting matches, i will send you messages when will there be more than ${CONFIGDATA.tracked_quantity_players} players online (once every ${(CONFIGDATA.message_interval_ms / 1000) / 60} minutes while there are more than ${CONFIGDATA.tracked_quantity_players} players)`
+    `Bot stopped.
+    Automatic messages with notifications about  ${CONFIGDATA.tracked_quantity_players}+ online on the server have been stopped. To resume, send any message to the chat. Cya!`
   );
  } else if (String(msg.text).trim() === "/menu") {
     await bot.sendMessage(msg.chat.id, "Menu on", {
       reply_markup: {
-        keyboard: [["/online", "/map", "/info"]],
+        keyboard: [["/online", "/map", "/info", "/stop"]],
         resize_keyboard: true,
       },
     });
@@ -40,11 +40,12 @@ if (String(msg.text).trim() === "/start") {
       msg.chat.id,
       `Hi, i am a small bot for online checking on Coronavirus Public EU server for Savage Drx game. You can get information by clicking on the buttons:
 
-      /online - online players 
+      /online - check online players 
       /map - map on the server
       /menu - open the menu
+      /stop - stop messages about online
       
-      So that you don't miss the most interesting matches, i will send you messages when will there be more than ${CONFIGDATA.tracked_quantity_players} players online (once every ${(CONFIGDATA.message_interval_ms / 1000) / 60} minutes while there are more than ${CONFIGDATA.tracked_quantity_players} players)`
+      So that you don't miss the most interesting matches, i will send you messages when will there be more than ${CONFIGDATA.tracked_quantity_players} players online (once every ${(CONFIGDATA.message_interval_ms / 1000) / 60} minutes while there are more than ${CONFIGDATA.tracked_quantity_players} players). You can /stop it any time.`
     );
   }
 });

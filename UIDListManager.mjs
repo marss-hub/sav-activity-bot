@@ -43,6 +43,15 @@ export class UIDListManager {
   }
 
   /**
+   * checks if the user is in the list
+   * @param {(number|string)} userId user chat id
+   * @returns {boolean}
+   */
+  checkUIDInList(userId) {
+    return this.#UIDList.includes(userId);
+  }
+
+  /**
    * adds a new user to the user list
    * @param {(number|string)} userId user chat id
    */
@@ -87,7 +96,5 @@ export class UIDListManager {
         logger.addLogEntry(`Ошибка добавления пользователя: Некорректный JSON или ID \n${err}`)
       }
    }
-
-
 
 }
