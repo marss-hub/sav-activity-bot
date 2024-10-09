@@ -4,7 +4,7 @@ import { map, onlinePlayers } from "./index.mjs";
 import { UIDList } from "./UIDList.mjs";
 
 /**
- * модуль создает и экспортирует экземпляр бота
+ * The module creates and exports a bot instance
  */
 export const bot = new TelegramBot(CONFIGDATA.api_key_bot, {
   polling: { interval: 300, autoStart: false },
@@ -32,9 +32,9 @@ if (String(msg.text).trim() === "/start") {
       },
     });
   } else if (String(msg.text).trim() === "/online") {
-    await bot.sendMessage(msg.chat.id, `Players online now: ${onlinePlayers}`); // выводит null во время отработки первого интервала в setinterval
+    await bot.sendMessage(msg.chat.id, `Players online now: ${onlinePlayers}`); // outputs null during the first interval in setinterval
   } else if (String(msg.text).trim() === "/map") {
-    await bot.sendMessage(msg.chat.id, `Map right now: ${map}`); // выводит null во время отработки первого интервала в setinterval
+    await bot.sendMessage(msg.chat.id, `Map right now: ${map}`); // outputs null during the first interval in setinterval
   } else {
     await bot.sendMessage(
       msg.chat.id,

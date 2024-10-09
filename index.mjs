@@ -18,13 +18,13 @@ if (response.status === 200) {
     const responseText = await response.text();
     const data = JSON.parse(responseText);
     
-    // Находим в присланном оъекте нужный сервер и его данные - текущие онлайн и карту
+    // in the received object we find the required server and its data - current online and map
     const pubEuServerData = data.find((item) => item.data.ip === CONFIGDATA.tracked_sever_ip);
     onlinePlayers = Number(pubEuServerData.data.cnum);
     map = String(pubEuServerData.data.world);
     const currentTime = Date.now();
 
-    // Если игроков больше чем указано в конфиге и прошло времени больше чем заданный в конфиге интервал - отправить сбщ по списку id юзеров.
+    // If there are more players than specified in the config and more time has passed than the interval specified in the config, send a message to the list of user IDs.
     if (onlinePlayers > CONFIGDATA.tracked_quantity_players && currentTime - lastMsgTime > CONFIGDATA.message_interval_ms )  {
         lastMsgTime = currentTime;
 
@@ -45,5 +45,3 @@ if (response.status === 200) {
 
   await bot.startPolling()
 
-// работает на постоянном хостинге
-// перезапускается при падении node

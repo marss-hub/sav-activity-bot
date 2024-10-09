@@ -1,14 +1,14 @@
 import * as fs from "node:fs";
 import { logger } from "./logger.mjs";
 /**
- * Отвечает за работу со списком юзеров - сохранением, обновлением, выдачей данных
+ * Responsible for working with the list of users - saving, updating, and issuing data
  */
 export class UIDListManager {
     #UIDListPath;
 
    /**
-   * Возвращает экземпляр менеджера который работает с файлом списка слов по указанному пути
-   * @param {string} UIDListPathStr путь к файлу
+   * Returns an instance of the manager that works with the user list file at the specified path.
+   * @param {string} UIDListPathStr file path
    */
   constructor(UIDListPathStr) {
     this.#UIDListPath = UIDListPathStr;
@@ -18,7 +18,7 @@ export class UIDListManager {
   }
 
   /**
-   * Возвращает массив id пользователей из файла списка (или пустой массив при отсутствии UID пользователей)
+   * Returns an array of user ids from a list file (or an empty array if there are no user UIDs)
    * @returns {Array.<string, number>}
    */
   getUIDList() {
@@ -33,8 +33,8 @@ export class UIDListManager {
   }
 
   /**
-   * добавляет нового пользователя в список пользователей
-   * @param {(number|boolean)} userId id чата пользователя
+   * adds a new user to the user list
+   * @param {(number|boolean)} userId user chat id
    */
   addUID(userId) {
     try {

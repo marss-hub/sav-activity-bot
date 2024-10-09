@@ -1,12 +1,12 @@
 import * as fs from "node:fs";
 /**
- * Класс отвечает за работу с логами - сохранением, обновлением, выдачей данных
+ * The class is responsible for working with logs - saving, updating, and issuing data
  */
 export class LogManager {
   #logPath;
   /**
-   * Возвращает экземпляр логера который работает с файлом для логов по указанному пути
-   * @param {string} logPathStr путь к лог-файлу
+   * Returns a logger instance that works with the log file at the specified path.
+   * @param {string} logPathStr path to log file
    */
   constructor(logPathStr) {
     this.#logPath = logPathStr;
@@ -16,7 +16,7 @@ export class LogManager {
   }
 
   /**
-   * Делает лог-запись 
+   * Makes a log entry
    */
   addLogEntry(msg) {
     fs.appendFileSync(this.#logPath, `${String(new Date())} \n${msg} \n\n`);
