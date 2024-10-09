@@ -1,7 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 import { CONFIGDATA } from "./configData.mjs";
-import { map, onlinePlayers } from "./index.mjs";
 import { UIDList } from "./UIDList.mjs";
+import { getServerDataMap, getServerDataOnline } from "./assets.mjs";
 
 /**
  * The module creates and exports a bot instance
@@ -32,9 +32,9 @@ if (String(msg.text).trim() === "/start") {
       },
     });
   } else if (String(msg.text).trim() === "/online") {
-    await bot.sendMessage(msg.chat.id, `Players online now: ${onlinePlayers}`); // outputs null during the first interval in setinterval
+    await bot.sendMessage(msg.chat.id, `Players online now: ${getServerDataOnline()}`); // outputs null during the first interval in setinterval
   } else if (String(msg.text).trim() === "/map") {
-    await bot.sendMessage(msg.chat.id, `Map right now: ${map}`); // outputs null during the first interval in setinterval
+    await bot.sendMessage(msg.chat.id, `Map right now: ${getServerDataMap()}`); // outputs null during the first interval in setinterval
   } else {
     await bot.sendMessage(
       msg.chat.id,
